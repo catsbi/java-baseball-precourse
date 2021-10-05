@@ -17,6 +17,10 @@ public class Ball {
         this.value = value;
     }
 
+    public Ball(String number) {
+        this(Integer.parseInt(number));
+    }
+
     private boolean isValidValue(int value) {
         return value > 0 && value < 10;
     }
