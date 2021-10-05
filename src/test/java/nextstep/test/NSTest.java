@@ -23,6 +23,7 @@ public abstract class NSTest {
 
     /**
      * 사용자의 입력을 기다리는 상황에서 테스트 종료
+     *
      * @param args
      */
     protected void running(final String... args) {
@@ -33,6 +34,7 @@ public abstract class NSTest {
 
     /**
      * 프로그램이 정상적으로 종료
+     *
      * @param args
      */
     protected void run(final String... args) {
