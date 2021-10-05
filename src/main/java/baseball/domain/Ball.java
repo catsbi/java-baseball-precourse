@@ -8,6 +8,9 @@ import java.util.Objects;
  * 야구 게임 숫자
  */
 public class Ball {
+    public static final int MIN_LIMIT = 1;
+    public static final int MAX_LIMIT = 9;
+
     private final int value;
 
     public Ball(int value) {
@@ -22,7 +25,7 @@ public class Ball {
     }
 
     private boolean isValidValue(int value) {
-        return value > 0 && value < 10;
+        return value >= MIN_LIMIT && value <= MAX_LIMIT;
     }
 
     @Override
