@@ -1,5 +1,6 @@
 package baseball.domain;
 
+import baseball.exception.DuplicateBallException;
 import baseball.exception.InvalidBallIndexException;
 import baseball.exception.InvalidBallListSizeException;
 
@@ -14,7 +15,6 @@ import java.util.Set;
  * 야구 게임 숫자 일급 컬렉션
  */
 public class BallList {
-    public static final String DELIMITER = "";
     public static final int BALL_LIMIT_COUNT = 3;
     private final List<Ball> store = new ArrayList<>();
 
@@ -29,14 +29,24 @@ public class BallList {
         if (Objects.isNull(numStrings) || numStrings.length() != BALL_LIMIT_COUNT) {
             throw new InvalidBallListSizeException();
         }
-        final String[] numbers = numStrings.split(DELIMITER);
-        Set<Ball> balls = new LinkedHashSet<>();
 
-        for (String number : numbers) {
-            balls.add(new Ball(number));
+        final Collection<? extends Ball> newBalls = createBallList(numStrings);
+
+        return new BallList(newBalls);
+    }
+
+    private static Collection<? extends Ball> createBallList(String numStrings) {
+        final Set<Ball> balls = new LinkedHashSet<>();
+
+        for (int i = 0; i < numStrings.length(); i++) {
+            balls.add(new Ball(numStrings.charAt(i)));
         }
 
-        return new BallList(balls);
+        if (balls.size() != BALL_LIMIT_COUNT) {
+            throw new DuplicateBallException();
+        }
+
+        return balls;
     }
 
     public Ball get(int index) {
