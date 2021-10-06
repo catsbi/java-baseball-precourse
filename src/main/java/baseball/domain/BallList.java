@@ -16,6 +16,7 @@ import java.util.Set;
  */
 public class BallList {
     public static final int BALL_LIMIT_COUNT = 3;
+    public static final int ASCII_ZERO_DECIMAL = 48;
     private final List<Ball> store = new ArrayList<>();
 
     public BallList() {
@@ -39,7 +40,7 @@ public class BallList {
         final Set<Ball> balls = new LinkedHashSet<>();
 
         for (int i = 0; i < numStrings.length(); i++) {
-            balls.add(new Ball(numStrings.charAt(i)));
+            balls.add(new Ball(numStrings.charAt(i) - ASCII_ZERO_DECIMAL));
         }
 
         if (balls.size() != BALL_LIMIT_COUNT) {
