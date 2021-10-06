@@ -44,7 +44,7 @@ class BallTest {
         void createBallWithInvalidNumber(int number) {
             assertThatThrownBy(() -> new Ball(number))
                     .isInstanceOf(InvalidBallValueException.class)
-                    .hasMessage(String.format(InvalidBallValueException.DEFAULT_MESSAGE, number));
+                    .hasMessage(String.format(InvalidBallValueException.DEFAULT_MESSAGE_FORMAT, number));
         }
     }
 

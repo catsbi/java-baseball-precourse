@@ -88,7 +88,7 @@ class BaseBallServiceTest {
         @ParameterizedTest
         @ValueSource(strings = {"151", "244", "336", "811", "999", "111", "272"})
         void playWithDuplicatedNumStrings(String numStrings) {
-            assertThatThrownBy(()-> baseBallService.play(baseballGame, numStrings))
+            assertThatThrownBy(() -> baseBallService.play(baseballGame, numStrings))
                     .isInstanceOf(DuplicateBallException.class);
         }
     }

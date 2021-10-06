@@ -20,7 +20,7 @@ public class BaseballGameTest {
         class Context_with_computer_have_425 {
             @BeforeEach
             void setUp() {
-                baseballGame = BaseballGame.newInstance(()-> BallList.from("425"));
+                baseballGame = BaseballGame.newInstance(() -> BallList.from("425"));
             }
 
             @DisplayName("사용자가 123을 제시하면, 1스트라이크를 반환한다.")

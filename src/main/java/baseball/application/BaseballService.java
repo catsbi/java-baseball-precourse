@@ -28,7 +28,7 @@ public class BaseballService {
      * 숫자 야구 게임을 진행하고 진행 결과를 반환한다.
      *
      * @param baseballGame 숫자 야구 게임
-     * @param numStrings 사용자가 입력한 숫자 문자열
+     * @param numStrings   사용자가 입력한 숫자 문자열
      * @return 숫자 야구 게임 결과
      */
     public BaseballGameRecords play(BaseballGame baseballGame, String numStrings) {
