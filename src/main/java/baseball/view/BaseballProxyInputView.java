@@ -1,6 +1,8 @@
 package baseball.view;
 
 import baseball.dto.BaseballGameRequest;
+import baseball.exception.DuplicateBallException;
+import baseball.exception.InvalidBallListSizeException;
 
 public class BaseballProxyInputView implements InputView<BaseballGameRequest> {
     public static final String ERROR_SUFFIX = "[ERROR]";
@@ -14,7 +16,10 @@ public class BaseballProxyInputView implements InputView<BaseballGameRequest> {
     public BaseballGameRequest requestNumbers() {
         try {
             return inputView.requestNumbers();
-        } catch (RuntimeException e) {
+        } catch (InvalidBallListSizeException
+                | DuplicateBallException
+                | NumberFormatException e) {
+
             printException(e);
             return this.requestNumbers();
         }
