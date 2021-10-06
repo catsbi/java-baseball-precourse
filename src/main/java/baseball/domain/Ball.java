@@ -12,6 +12,7 @@ import static baseball.validator.BaseballGameValidators.validateBallNumber;
 public class Ball {
     public static final int MIN_LIMIT = 1;
     public static final int MAX_LIMIT = 9;
+    public static final String EMPTY_STR = "";
 
     private final int value;
 
@@ -45,6 +46,6 @@ public class Ball {
 
     @Override
     public String toString() {
-        return value + "";
+        return value + EMPTY_STR;
     }
 }

@@ -2,12 +2,14 @@ package baseball.dto;
 
 import baseball.exception.DuplicateBallException;
 import baseball.exception.InvalidBallListSizeException;
+import baseball.exception.InvalidBallValueException;
 import baseball.exception.InvalidPlayCategoryException;
 
 import java.util.Objects;
 
 import static baseball.dto.BaseballGameRequest.PlayCategory.RESTART;
 import static baseball.validator.BaseballGameValidators.validateBallListSize;
+import static baseball.validator.BaseballGameValidators.validateBallNumber;
 import static baseball.validator.BaseballGameValidators.validateDuplicateNumber;
 
 public class BaseballGameRequest implements Request {
@@ -32,10 +34,6 @@ public class BaseballGameRequest implements Request {
 
             throw new InvalidPlayCategoryException(playCategoryInt);
         }
-
-        public int value() {
-            return value;
-        }
     }
 
     private final String numbers;
@@ -59,6 +57,10 @@ public class BaseballGameRequest implements Request {
 
         if (!validateDuplicateNumber(numbers)) {
             throw new DuplicateBallException();
+        }
+
+        if (!validateBallNumber(numbers)) {
+            throw new InvalidBallValueException(numbers);
         }
     }
 

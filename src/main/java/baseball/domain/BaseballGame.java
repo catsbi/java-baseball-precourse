@@ -4,6 +4,8 @@ package baseball.domain;
  * 야구 게임 진행 정보
  */
 public class BaseballGame {
+    public static final int BALL_LIMIT_COUNT = 3;
+    private static final int ZERO = 0;
     private final BallList ballListFromComputer;
     private boolean finished;
 
@@ -25,13 +27,13 @@ public class BaseballGame {
     public BaseballGameRecords matches(BallList ballList) {
         final BaseballGameRecords records = BaseballGameRecords.newInstance();
 
-        for (int i = 0; i < ballList.size(); i++) {
+        for (int i = ZERO; i < ballList.size(); i++) {
             final Ball ball = ballList.get(i);
 
             records.recordResult(pitchResult(ball, i));
         }
 
-        if (records.countByZone(Zone.STRIKE) == 3) {
+        if (records.countByZone(Zone.STRIKE) == BALL_LIMIT_COUNT) {
             complete();
         }
 
@@ -43,17 +45,30 @@ public class BaseballGame {
     }
 
     private Zone pitchResult(Ball ball, int index) {
-        if (ballListFromComputer.contains(ball, index)) {
+        if (isStrike(ball, index)) {
             return Zone.STRIKE;
         }
 
-        if (ballListFromComputer.contains(ball)) {
+        if (isBall(ball)) {
             return Zone.BALL;
         }
 
         return Zone.NOTHING;
     }
 
+    private boolean isBall(Ball ball) {
+        return ballListFromComputer.contains(ball);
+    }
+
+    private boolean isStrike(Ball ball, int index) {
+        return ballListFromComputer.contains(ball, index);
+    }
+
+    /**
+     * 야구 게임의 종료 여부를 반환한다.
+     *
+     * @return 게임 종료 여부에 대한 논리값
+     */
     public boolean isFinished() {
         return finished;
     }

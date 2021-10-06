@@ -26,6 +26,7 @@ public class BaseballController {
         final BaseballGame baseballGame = baseballService.createGame();
 
         playLoopQuestion(baseballGame);
+
         if (requestRestarted()) {
             gameStart();
         }

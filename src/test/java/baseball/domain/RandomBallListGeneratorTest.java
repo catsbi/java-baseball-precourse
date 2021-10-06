@@ -7,6 +7,7 @@ import org.junit.jupiter.api.RepeatedTest;
 import java.util.HashSet;
 import java.util.Set;
 
+import static baseball.domain.BaseballGame.BALL_LIMIT_COUNT;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("RandomBallListGenerator 클래스")
@@ -29,8 +30,8 @@ class RandomBallListGeneratorTest {
             ballSet.add(createdBallList.get(i));
         }
 
-        assertThat(createdBallList.size()).isEqualTo(BallList.BALL_LIMIT_COUNT);
-        assertThat(ballSet).hasSize(BallList.BALL_LIMIT_COUNT);
+        assertThat(createdBallList.size()).isEqualTo(BALL_LIMIT_COUNT);
+        assertThat(ballSet).hasSize(BALL_LIMIT_COUNT);
     }
 
 

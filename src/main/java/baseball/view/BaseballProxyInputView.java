@@ -1,9 +1,6 @@
 package baseball.view;
 
 import baseball.dto.BaseballGameRequest;
-import baseball.exception.DuplicateBallException;
-import baseball.exception.InvalidBallListSizeException;
-import baseball.exception.InvalidPlayCategoryException;
 
 public class BaseballProxyInputView implements InputView<BaseballGameRequest> {
     public static final String ERROR_SUFFIX = "[ERROR]";
@@ -17,8 +14,8 @@ public class BaseballProxyInputView implements InputView<BaseballGameRequest> {
     public BaseballGameRequest requestNumbers() {
         try {
             return inputView.requestNumbers();
-        } catch (InvalidBallListSizeException | DuplicateBallException e) {
-            System.out.println(ERROR_SUFFIX + e.getMessage());
+        } catch (RuntimeException e) {
+            printException(e);
             return this.requestNumbers();
         }
     }
@@ -27,9 +24,13 @@ public class BaseballProxyInputView implements InputView<BaseballGameRequest> {
     public BaseballGameRequest requestHopePlaying() {
         try {
             return inputView.requestHopePlaying();
-        } catch (NumberFormatException | InvalidPlayCategoryException e) {
-            System.out.println(ERROR_SUFFIX + e.getMessage());
+        } catch (RuntimeException e) {
+            printException(e);
             return this.requestHopePlaying();
         }
+    }
+
+    private void printException(RuntimeException e) {
+        System.out.println(ERROR_SUFFIX + e.getMessage());
     }
 }

@@ -32,23 +32,23 @@ public class BaseballConfig {
         return new BaseballController(baseballService(), baseballView());
     }
 
-    private BaseballView baseballView() {
+    public BaseballView baseballView() {
         return new BaseballViewImpl(inputView(), outputView());
     }
 
-    private OutputView<GameRecordResponse> outputView() {
+    public OutputView<GameRecordResponse> outputView() {
         return new BaseballOutputView(new StringBuilder());
     }
 
-    private InputView<BaseballGameRequest> inputView() {
+    public InputView<BaseballGameRequest> inputView() {
         return new BaseballProxyInputView(new BaseballInputView());
     }
 
-    private BaseballService baseballService() {
+    public BaseballService baseballService() {
         return new BaseballService(domainGenerator());
     }
 
-    private DomainGenerator<BallList> domainGenerator() {
+    public DomainGenerator<BallList> domainGenerator() {
         return new RandomBallListGenerator();
     }
 }

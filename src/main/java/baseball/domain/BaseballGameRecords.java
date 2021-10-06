@@ -13,6 +13,7 @@ public class BaseballGameRecords {
     public static final int DEFAULT_COUNT = 0;
     public static final int INCREMENT_VALUE = 1;
     public static final int DEFAULT_CAPACITY = 3;
+    private static final int ZERO = 0;
     private final Map<Zone, Integer> records = new EnumMap<>(Zone.class);
 
     private BaseballGameRecords() {
@@ -45,7 +46,7 @@ public class BaseballGameRecords {
      * @param zone 기록 할 존
      * @throws AlreadyGameExitedException 현재 게임의 기록 횟수가 기본 범위를 벗어난 경우
      */
-    public void recordResult(Zone zone) {
+    public synchronized void recordResult(Zone zone) {
         records.merge(zone, INCREMENT_VALUE, this::merge);
     }
 
@@ -63,7 +64,7 @@ public class BaseballGameRecords {
      * @return 총 기록 횟수
      */
     public int count() {
-        int sum = 0;
+        int sum = ZERO;
 
         for (Integer value : records.values()) {
             sum += value;

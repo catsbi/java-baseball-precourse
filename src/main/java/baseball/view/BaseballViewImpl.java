@@ -3,6 +3,9 @@ package baseball.view;
 import baseball.dto.BaseballGameRequest;
 import baseball.dto.GameRecordResponse;
 
+/**
+ * 야구 게임 내용을 외부에 노출한다.
+ */
 public class BaseballViewImpl implements BaseballView {
     private final InputView<BaseballGameRequest> inputView;
     private final OutputView<GameRecordResponse> outputView;
