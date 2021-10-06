@@ -4,6 +4,8 @@ import baseball.exception.InvalidBallValueException;
 
 import java.util.Objects;
 
+import static baseball.validator.BaseballGameValidators.validateBallNumber;
+
 /**
  * 야구 게임 숫자
  */
@@ -14,7 +16,7 @@ public class Ball {
     private final int value;
 
     public Ball(int value) {
-        if (!isValidValue(value)) {
+        if (!validateBallNumber(value)) {
             throw new InvalidBallValueException(value);
         }
         this.value = value;
@@ -22,10 +24,6 @@ public class Ball {
 
     public Ball(String number) {
         this(Integer.parseInt(number));
-    }
-
-    private boolean isValidValue(int value) {
-        return value >= MIN_LIMIT && value <= MAX_LIMIT;
     }
 
     @Override
