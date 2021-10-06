@@ -5,9 +5,11 @@ package baseball.domain;
  */
 public class BaseballGame {
     private final BallList ballListFromComputer;
+    private boolean finished;
 
     private BaseballGame(BallList ballListFromComputer) {
         this.ballListFromComputer = ballListFromComputer;
+        this.finished = false;
     }
 
     public static BaseballGame newInstance(DomainGenerator<BallList> generator) {
@@ -29,7 +31,15 @@ public class BaseballGame {
             records.recordResult(pitchResult(ball, i));
         }
 
+        if (records.countByZone(Zone.STRIKE) == 3) {
+            complete();
+        }
+
         return records;
+    }
+
+    private void complete() {
+        this.finished = true;
     }
 
     private Zone pitchResult(Ball ball, int index) {
@@ -42,5 +52,9 @@ public class BaseballGame {
         }
 
         return Zone.NOTHING;
+    }
+
+    public boolean isFinished() {
+        return finished;
     }
 }
