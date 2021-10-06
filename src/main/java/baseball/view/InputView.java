@@ -1,7 +1,9 @@
 package baseball.view;
 
-public interface InputView {
-    String requestNumbers();
+import baseball.dto.Request;
 
-    boolean requestHopePlaying();
+public interface InputView<T extends Request> {
+    T requestNumbers();
+
+    T requestHopePlaying();
 }
